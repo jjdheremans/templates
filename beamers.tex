@@ -1,0 +1,85 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{pifont}
+\usepackage{stanli}
+\usepackage{varwidth}
+\usepackage{tikz}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{animate}
+%\usepackage[draft]{animate}
+\usepackage{pgfplots}
+\usepackage[export]{adjustbox}
+\usepackage{copyrightbox}
+\usepackage{lastpage}
+\usepackage{subfig}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+%\usepackage[french]{babel}
+%\usetheme{Singapore}
+\pgfplotsset{compat=1.11}
+%\usefonttheme{professionalfonts}
+\usetikzlibrary{shadows}
+\usepackage{lastpage}
+
+
+
+\setbeamercovered{transparent}
+\newcommand*{\itemOneA}{\MyShadow{0.7} }
+\newcommand*{\itemOneB}{\itemOneB{0.5} }
+\newcommand{\MyShadow}[1]{\tikz{\shade[ball color=MyColor, preaction={fill=black,
+			opacity=.35,transform canvas={xshift=1.3mm,yshift=-1.15mm, yscale=0.28}}] (0,0) circle (#1ex);} }
+\newcommand{\OK}{\color{green}\ding{52}\color{black}}
+\newcommand{\KO}{\color{red}\ding{55}\color{black}}
+
+\begin{document}
+
+\input{formatFACSA.tex}
+
+
+
+
+
+%% Entry to Front Page %%
+\title{Génération de signaux aléatoires multi-nodaux inter-corrélés}
+\institute{FineLg 2020: Réunion \#2}
+\author{\begin{tabular}{c}Julien Heremans \\ \underline{Vincent Denoel}\end{tabular}}
+\date{\scriptsize 16/17 Janvier 2019}
+\def\confLogo{logos/uliege.png}
+%% Entry to Front Page %%
+
+
+
+
+
+
+\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+\newcommand\deriv{\mathrm{d}}
+\newcommand\expo[1]{\mathop{\mathrm{e}^\mathrm{#1}}}
+
+
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{First Title}
+\framesubtitle{Sb-title}
+
+\begin{itemize}[label=\itemOneA]
+	\item Thing 1
+	\item Thing 2
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\end{document}
