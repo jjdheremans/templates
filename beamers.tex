@@ -8,9 +8,8 @@
 \usepackage{stanli}
 \usepackage{varwidth}
 \usepackage{tikz}
-\usepackage[outdir=./]{epstopdf}
+\usepackage[outdir=convertedFigs/]{epstopdf}
 \usepackage{animate}
-%\usepackage[draft]{animate}
 \usepackage{pgfplots}
 \usepackage[export]{adjustbox}
 \usepackage{copyrightbox}
@@ -18,68 +17,72 @@
 \usepackage{subfig}
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
-%\usepackage[french]{babel}
-%\usetheme{Singapore}
 \pgfplotsset{compat=1.11}
-%\usefonttheme{professionalfonts}
 \usetikzlibrary{shadows}
 \usepackage{lastpage}
+\usepackage{newunicodechar}
+\usepackage{tikzsymbols} 
 
 
 
-\setbeamercovered{transparent}
-\newcommand*{\itemOneA}{\MyShadow{0.7} }
-\newcommand*{\itemOneB}{\itemOneB{0.5} }
-\newcommand{\MyShadow}[1]{\tikz{\shade[ball color=MyColor, preaction={fill=black,
-			opacity=.35,transform canvas={xshift=1.3mm,yshift=-1.15mm, yscale=0.28}}] (0,0) circle (#1ex);} }
+
+% Custom Commands
 \newcommand{\OK}{\color{green}\ding{52}\color{black}}
 \newcommand{\KO}{\color{red}\ding{55}\color{black}}
-
-\begin{document}
-
-\input{formatFACSA.tex}
-
-
-
-
-
-%% Entry to Front Page %%
-\title{Génération de signaux aléatoires multi-nodaux inter-corrélés}
-\institute{FineLg 2020: Réunion \#2}
-\author{\begin{tabular}{c}Julien Heremans \\ \underline{Vincent Denoel}\end{tabular}}
-\date{\scriptsize 16/17 Janvier 2019}
-\def\confLogo{logos/uliege.png}
-%% Entry to Front Page %%
-
-
-
-
-
-
-\setbeamercovered{transparent}
-\setbeamertemplate{navigation symbols}{}
 \newcommand\deriv{\mathrm{d}}
 \newcommand\expo[1]{\mathop{\mathrm{e}^\mathrm{#1}}}
+\newcommand\Warning{%
+	\makebox[1.4em][c]{%
+		\makebox[0pt][c]{\raisebox{.1em}{\small!}}%
+		\makebox[0pt][c]{\color{red}\Large$\bigtriangleup$}}}%
 
 
 
-\begin{frame}
-\maketitle
-\end{frame}
+\begin{document}
+	
+	%% Entries for Front Page %%
+	\title{Génération de signaux \\ aléatoires multi-nodaux inter-corrélés}
+	\institute[Séminaire SSD 17/04/20]{Séminaire SSD}
+	\author{\begin{tabular}{c} \underline{Julien Heremans} \\ {Vincent Denoël}\end{tabular}}
+	\date{\scriptsize 17 avril 2020}
+	\def\confLogo{logos/uliege.png}
+	
+	% Input template
+	\input{formatFACSA.tex}
+	
+	
+	% Page de garde
+	\begin{frame}[plain]
+	\maketitle
+	\end{frame}
 
-\begin{frame}
-\frametitle{First Title}
-\framesubtitle{Sb-title}
 
-\begin{itemize}[label=\itemOneA]
+
+
+	% Table des matières
+	\begin{frame}
+	\frametitle{Table des matières}
+	\tableofcontents
+	\end{frame}
+
+	% Corps de texte
+	\section{First section} % new section name will be displayed in a dedicated headsectionframe + in table on contents
+	\subsection{First Subsection} % subsections will be included in table of contents
+	
+	\begin{frame}
+	\frametitle{First Title}
+	\framesubtitle{Sub-title}
+	
+	\begin{itemize}[label=\itemOneA]
 	\item Thing 1
 	\item Thing 2
-\end{itemize}
-
-\end{frame}
-
-
-
+	\begin{itemize}[label=\itemOneB]
+		\item Subitem
+		\item Subitem
+	\end{itemize}
+	\end{itemize}
+	
+	\end{frame}
 
 
 \end{document}
