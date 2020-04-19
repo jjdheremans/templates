@@ -1,22 +1,39 @@
 	%% List of Packages to be included %%
 %	\usepackage{tikz}
 %	\usepackage{varwidth}
+%	\usepackage{enumitem}
+%	\usepackage{pifont}
 %	\usetikzlibrary{positioning}
 %	\usetikzlibrary{calc}
-	%% List of Packages to be included %%
-	
-  	%% modifier ici format police %%	
-  	\setbeamerfont{title}{size=\Large}
-	\setbeamerfont{frametitle}{size=\Large}
-	\setbeamerfont{framesubtitle}{size=\scriptsize}
-	\setbeamerfont{institute}{size=\scriptsize}
-	\setbeamerfont{date}{size=\scriptsize}
-	\setbeamerfont{author}{size=\normalsize}
-	%% modifier ici format police %%
+%% List of Packages to be included %%
 
 
-	\definecolor{MyColor}{rgb}{0.9297,0.5351,0.265312} 
-	\newenvironment{changemargin}[2]{%  
+
+% Change default setup:
+\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+
+
+% Change default color:
+\definecolor{MyColor}{rgb}{0.9297,0.5351,0.265312} 
+
+
+%% Modifier le format de la police	
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{framesubtitle}{size=\scriptsize}
+\setbeamerfont{institute}{size=\scriptsize}
+\setbeamerfont{date}{size=\scriptsize}
+\setbeamerfont{author}{size=\normalsize}
+
+
+% Modifier couleur par défaut:
+\setbeamercolor{title}{fg=MyColor}
+\setbeamercolor{frametitle}{fg=MyColor}
+
+
+% Custom environment
+\newenvironment{changemargin}[2]{%  
 	\begin{list}{}{%
 			\setlength{\topsep}{0pt}%
 			\setlength{\leftmargin}{#1}%
@@ -27,13 +44,23 @@
 			\setlength{\topmargin}{-2cm}
 		}%
 		\item[]}{\end{list}
-	}
+}
 
+
+% Custom bullets for itemize labels
+\newcommand{\MyShadow}[1]{\tikz{\shade[ball color=MyColor, preaction={fill=black,
+			opacity=.35,transform canvas={xshift=1.3mm,yshift=-1.15mm, yscale=0.28}}] (0,0) circle (#1ex);} }
+\newcommand*{\itemOneA}{\MyShadow{0.7} }
+\newcommand*{\itemOneB}{\MyShadow{0.5} }
+\setlist[itemize]{label=\itemOneA}
+
+
+% Change defaut presentation front page
 \def\sizLRat{0.3}
 \def\sizTRat{0.7}
 \def\sizL2Rat{0.5}
 \setbeamertemplate{title page}
-{ 	\vspace{-0.5cm}
+{ 	\vspace{-0.08cm}
 	\def\pp{0.79\paperwidth} 
 	\begin{changemargin}{-1cm}{0cm}
 		\begin{tikzpicture}
@@ -47,23 +74,25 @@
 		\fill [white] (A)--(B)--(C)--(D)--(E) ;
 		\node[anchor=north east,xshift=-4pt,yshift=-4pt,align=right] at (current page.north east) {{\includegraphics[width=0.25\paperwidth]{logos/facsa.pdf}}};
 		\node[anchor=north east,xshift=-4pt,yshift=-35pt,align=right] at (D) {{\includegraphics[width=0.37\paperwidth]{logos/logostocha} }};
-		\node [anchor=north, text width=8cm, align=center,color=MyColor,minimum width=8cm] (titre) at (0.7\paperwidth,0.65\paperheight) {\usebeamerfont{title}\inserttitle\par} ;
+		\node [anchor=north, text width=9cm,align=center,color=MyColor,minimum width=8cm] (titre) at (0.65\paperwidth,0.65\paperheight) { \hyphenchar\font=-1
+			\usebeamerfont{title}\inserttitle\par} ;
 		\node [anchor=north,below=0cm of titre,yshift=-15pt] (autr){\usebeamerfont{author}\insertauthor\par};
 		\path (A) -- (TL) coordinate [pos=\sizL2Rat] (B') ;
 		\path (A) -- (E) coordinate [pos=\sizTRat] (F) ;
 		\fill [gray!10,fill opacity=0.8] (A) -- (B') -- (F) -- cycle ;
-%		\node [inner sep=4pt,anchor=west] (conf)  at (0,0.1\paperheight) { \usebeamerfont{institute}\insertinstitute\par } ;
+		%		\node [inner sep=4pt,anchor=west] (conf)  at (0,0.1\paperheight) { \usebeamerfont{institute}\insertinstitute\par } ;
 		\node [inner sep=5pt,anchor=south west,color=MyColor] (date) at (current page.south west) {\usebeamerfont{date}\insertdate\par }; 
 		\node [anchor=west, inner sep=5pt,yshift=10pt,color=MyColor](date) at (0,0.05\paperheight) {\insertinstitute};
 		\node [anchor=west,inner sep=20pt] at (0,0.22\paperheight) { \includegraphics[width=0.3\paperwidth]{\confLogo} };
 		\node [anchor=south east,inner sep = 5pt] at (current page.south east) {{ \includegraphics[width=0.2\paperwidth]{logos/uee}}}  ;
 		\end{tikzpicture}
 	\end{changemargin}
-
-
+	
+	
 }
- 
- 
+
+
+% Change default frame title
 \setbeamertemplate{frametitle}
 {
 	\vspace{0.3cm}\hspace{-0.8cm}
@@ -77,7 +106,7 @@
 	\vspace{-0.2cm}
 	\begin{tikzpicture}[remember picture,overlay]
 	\node[anchor=north east,xshift=-4pt,yshift=-4pt] at (current page.north east) {\includegraphics[width=0.25\paperwidth]{logos/facsa.pdf}};
-%	\node [anchor=south east,inner sep = 5pt] at (current page.south east) {{ \includegraphics[width=0.2\paperwidth]{logos/uee}}}  ;
+	%	\node [anchor=south east,inner sep = 5pt] at (current page.south east) {{ \includegraphics[width=0.2\paperwidth]{logos/uee}}}  ;
 	\coordinate (A) at (current page.south west) ;
 	\coordinate (TL) at (current page.north west);
 	\coordinate (D) at (current page.north east) ;
@@ -86,7 +115,49 @@
 	\path (A) -- (E) coordinate [pos=\sizTRat] (F) ;
 	\fill [gray!5,fill opacity=0.8] (A) -- (B') -- (F) -- cycle ;
 	\node [anchor=south east,inner sep = 5pt,yshift=0pt] at (current page.south east) {\color{black}\scriptsize \insertframenumber{} /\inserttotalframenumber}  ;
-	\node [anchor=south west] at (current page.south west) {\color{MyColor}\scriptsize \insertinstitute} ;
+	\node [anchor=south west] at (current page.south west) {\color{MyColor}\scriptsize \insertshortinstitute} ;
 	\end{tikzpicture}
 }
+
+
+
+% Add title frame at each new section:
+\AtBeginSection[]{
+	\begin{frame}
+	\vfill
+	\centering
+	%	\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+	%		\usebeamerfont{title}\insertsectionhead\par%
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[anchor=north east,xshift=-4pt,yshift=-4pt] at (current page.north east) {\includegraphics[width=0.25\paperwidth]{logos/facsa.pdf}};
+	\node [anchor=south east,inner sep = 5pt,yshift=0pt] at (current page.south east) {\color{black}\scriptsize \insertframenumber{} /\inserttotalframenumber}  ;
+	\node [anchor=south west] at (current page.south west) {\color{MyColor}\scriptsize \insertshortinstitute} ;
+	\node [color=MyColor,anchor=center,align=center] (A) at (0,0) { \usebeamerfont{title} \Large \bfseries  \thesection~-~\insertsection~};
+	\coordinate  [yshift=-5pt,xshift=-10pt] (B) at (A.south west) ;
+	\coordinate  [yshift=-5pt,xshift=10pt] (C) at (A.south east) ; 
+	\draw  [line width=0.9pt,color=MyColor] (B) -- (C);
+	\draw [fill=MyColor, draw=MyColor] (B) circle(1.8pt) {};
+	\draw [fill=MyColor, draw=MyColor] (C) circle(1.8pt) {};
+	\end{tikzpicture}
+	%	\end{beamercolorbox}
+	\vfill
+\end{frame}
+}
+
+
+
+% Change defaut table of content
+\definecolor{itemizecolor}{rgb}{0.18,0.22,0.60}
+\defbeamertemplate{section in toc}{square unnumbered}{%
+\leavevmode\leftskip=1.75ex%
+\llap{{\thesection}}%
+\kern1.5ex\inserttocsection\par}
+\defbeamertemplate{subsection in toc}{square unnumbered}{%
+\leavevmode\leftskip=4.6ex%
+\llap{{\color{MyColor}\tiny$\blacksquare$\normalsize}}%
+\kern1.5ex\inserttocsubsection\par}
+\setbeamertemplate{section in toc}[square]
+\setbeamertemplate{subsection in toc}[square unnumbered]
+
+
 
